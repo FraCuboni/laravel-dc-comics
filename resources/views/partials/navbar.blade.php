@@ -8,6 +8,7 @@
         <div class="navbar-nav">
             <a class="nav-link" href="{{ route('home') }}">Home</a>
             <a class="nav-link" href="{{ route('page') }}">Page 2</a>
+            <a class="nav-link" href="{{ route('comics.index') }}">my Comics</a>
         </div>
       </div>
     </div>
