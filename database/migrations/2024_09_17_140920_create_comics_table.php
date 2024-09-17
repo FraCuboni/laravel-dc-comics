@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('series');
             $table->text('description');
             $table->float('price');
-            $table->string('thumb');
+            $table->string('img');
             $table->timestamps();
 
 
