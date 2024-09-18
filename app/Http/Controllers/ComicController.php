@@ -31,7 +31,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        dump('store');
+        // creo dato da aggiungere nel db
+        $comic = new Comic();
+
+        // assegno valori al dato
+        $comic->title = $request->title;
+        $comic->series = $request->series;
+        $comic->description = $request->description;
+        $comic->price = $request->price;
+        $comic->img = $request->img;
+
+        // salvo
+        $comic->save();
+
+        return view('comics.show', compact('comic'));
+
+        // 
     }
 
     /**
