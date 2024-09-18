@@ -22,7 +22,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        $comics = Comic::all();
+        return view('comics.create', compact('comics'));
     }
 
     /**
@@ -38,7 +39,17 @@ class ComicController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Trova il fumetto con l'ID specificato
+        $comic = Comic::find($id);
+
+        // Verifica se il fumetto esiste
+        if ($comic === null) {
+            // Se il fumetto non viene trovato, restituisce un errore 404 o reindirizza a una pagina
+            abort(404, 'Fumetto non trovato');
+        }
+
+        // Restituisce la vista 'comics.show' con il singolo fumetto
+        return view('comics.show', compact('comic'));
     }
 
     /**
