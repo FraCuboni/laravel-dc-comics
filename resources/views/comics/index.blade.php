@@ -20,6 +20,13 @@ MY COMICS
 
         <div class="col-10">
 
+            {{-- alert per delete --}}
+            @if(session('deleted'))
+            <div class="alert alert-success" role="alert">
+                {{session('deleted')}}
+            </div>
+            @endif
+
             <div class="table-responsive">
                 <table class="table align-middle">
 
@@ -61,11 +68,8 @@ MY COMICS
                                 </a>
 
                                 {{-- delete --}}
-                                <a href="">
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </a>
+                                @include('partials.formdelete')
+                                
 
                             </td>
                         </tr>
