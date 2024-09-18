@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Log;
 
 class ComicController extends Controller
 
@@ -31,22 +32,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        Log::debug("data", $data);
         // creo dato da aggiungere nel db
-        $comic = new Comic();
+        $comic = new Comic;
 
+        $comic->fill($data);
         // assegno valori al dato
-        $comic->title = $request->title;
-        $comic->series = $request->series;
-        $comic->description = $request->description;
-        $comic->price = $request->price;
-        $comic->img = $request->img;
+        // $comic->title = $data['title'];
+        // $comic->series = $data['series'];
+        // $comic->description = $data['description'];
+        // $comic->price = $data['price'];
+        // $comic->img = $data['img'];
 
         // salvo
         $comic->save();
-
-        return view('comics.show', compact('comic'));
-
-        // 
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -59,7 +60,6 @@ class ComicController extends Controller
 
         // Verifica se il fumetto esiste
         if ($comic === null) {
-            // Se il fumetto non viene trovato, restituisce un errore 404 o reindirizza a una pagina
             abort(404, 'Fumetto non trovato');
         }
 
@@ -72,7 +72,8 @@ class ComicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comic::find($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -80,7 +81,12 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $comic = Comic::find($id);
+
+        $comic->update($data);
+
+        return redirect()->route('comics.show', $comic);
     }
 
     /**

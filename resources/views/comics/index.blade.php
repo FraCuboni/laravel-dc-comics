@@ -54,7 +54,7 @@ MY COMICS
                                 </a>
 
                                 {{-- modify --}}
-                                <a href="">
+                                <a href="{{ route('comics.edit', $comic->id) }}">
                                     <button type="button" class="btn btn-warning">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
