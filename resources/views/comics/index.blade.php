@@ -10,7 +10,7 @@ MY COMICS
     <h1>
         COMICS PAGE
     </h1>
-    <a href="ref="{{ route('comics.create') }}">
+    <a href="{{ route('comics.create') }}">
         <button type="button" class="btn btn-primary btn-lg">add new</button>
     </a>
 
